@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Board.qml</file>
+        <file>Piece.qml</file>
+        <file>Tile.qml</file>
+        <file>Dashboard.qml</file>
+    </qresource>
+</RCC>
