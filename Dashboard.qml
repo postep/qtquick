@@ -9,7 +9,7 @@ Item {
     property var turnState: "redTurn"
     property var resetButton: resetButton
     property var startTime: new Date()
-    property var timer: timer
+    property alias timer: timer
     property alias timerVisible: timeText.visible
     RowLayout {
         id: row
@@ -51,7 +51,6 @@ Item {
                                timeText.text = "Czas gry:\n" + mins.toString()+":"+secsString
                            }
                        }
-
                 }
             }
 

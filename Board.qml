@@ -8,6 +8,9 @@ Item {
     property var possibleTiles: []
     property alias turnState: board.state
 
+    signal stopTimer()
+    signal startTimer()
+
     state: "redTurn"
     states: [
         State{
@@ -92,16 +95,23 @@ Item {
 
                                 tile.piece.setTeam(clickedTile.piece.team)
                                 if(!checkWin(tile)){
-                                    clickedTile.piece.setTeam("none")
-                                    darkTiles()
-                                    clickedTile = null
-                                    possibleTiles = []
                                     if(board.state == "redTurn"){
                                         board.state = "blackTurn"
                                     }else{
                                         board.state = "redTurn"
                                     }
+                                }else{
+                                    stopTimer()
+                                    if(tile.piece.team == "red"){
+                                        board.state = "redWin"
+                                    }else{
+                                        board.state = "blackWin"
+                                    }
                                 }
+                                clickedTile.piece.setTeam("none")
+                                darkTiles()
+                                clickedTile = null
+                                possibleTiles = []
                             }
                         }
                     }
@@ -239,17 +249,15 @@ Item {
             }
         }
         board.state = "redTurn"
+        startTimer()
     }
 
     function checkWin(tile){
-        console.log(tile.row);
         if(tile.piece.team == "red" && tile.row == 7){
-            board.state = "redWin"
             return true;
         }
 
         if(tile.piece.team == "black" && tile.row == 0){
-            board.state = "blackWin"
             return true;
         }
 

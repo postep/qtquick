@@ -67,6 +67,19 @@ ApplicationWindow {
                 dashboard.timer.restart()
             }
         }
+
+        Connections{
+            target: board
+            onStopTimer: {
+                dashboard.timer.stop()
+            }
+        }
+        Connections{
+            target: board
+            onStartTimer: {
+                dashboard.timer.restart()
+            }
+        }
     }
 
 }
